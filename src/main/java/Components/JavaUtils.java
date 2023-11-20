@@ -1,0 +1,13 @@
+package Components;
+
+import java.util.Random;
+public class JavaUtils {
+
+		public int getRandomNumber()
+		{
+			Random r = new Random();
+			int ran = r.nextInt(100);  // 100 is the range of random numbers & we can change it according to requirements
+			return ran;
+		}
+
+   }
