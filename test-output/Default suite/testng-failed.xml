@@ -3,11 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Vtiger_Adv_Selenium.CreateContact2">
+      <class name="POMProjBase.CreateOrganizationTestNG">
         <methods>
-          <include name="login"/>
+          <include name="organization"/>
+          <include name="AMConfig"/>
+          <include name="ACConfig"/>
+          <include name="BSConfig"/>
+          <include name="BMConfig"/>
+          <include name="ASConfig"/>
+          <include name="BCConfig"/>
         </methods>
-      </class> <!-- Vtiger_Adv_Selenium.CreateContact2 -->
+      </class> <!-- POMProjBase.CreateOrganizationTestNG -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

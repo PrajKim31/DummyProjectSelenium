@@ -10,10 +10,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
-import Components.ExcelUtils;
-import Components.FileUtils1;
-import Components.JavaUtils;
-import Components.WebDriverUtils;
+import CommonUtils.ExcelUtils;
+import CommonUtils.FileUtils1;
+import CommonUtils.JavaUtils;
+import CommonUtils.WebDriverUtils;
 import POMProject.ContactsPage;
 import POMProject.HomePage;
 import POMProject.LoginPage;
@@ -39,11 +39,11 @@ public class VtigerContacts {
 	    
 	    
 	  //to read data from excel file
-		   String FNAME = eutils.getDataFromExcelSheet("Sheet1",2,1); 
-		   String LNAME = eutils.getDataFromExcelSheet("Sheet1",3,1); 
-		   String ASSIGN = eutils.getDataFromExcelSheet("Sheet1",4,1);
+		  String FNAME = eutils.getDataFromExcelSheet("Sheet1",2,1); 
+		  String LNAME = eutils.getDataFromExcelSheet("Sheet1",3,1); 
+		  String ASSIGN = eutils.getDataFromExcelSheet("Sheet1",4,1);
 		   
-		   
+		    
 		   if(BROWSER.equalsIgnoreCase("Chrome"))
 			{ 
 				d = new ChromeDriver();
