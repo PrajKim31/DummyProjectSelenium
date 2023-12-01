@@ -5,21 +5,49 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import CommonUtils.BaseClassCont;
 import CommonUtils.ExcelUtils;
 import CommonUtils.FileUtils1;
+import CommonUtils.ListenerImplimentation;
 import CommonUtils.WebDriverUtils;
 
+@Listeners(ListenerImplimentation.class)
 public class CreateContactsTestNG extends BaseClassCont {
- 
-
 		//public WebDriver d;
 		
+	/*@Test    // to take ss of login page we have to cmnt it from base class also(i.e login code)
+	public void loginpage() throws InterruptedException
+	{ 
+		//finding username to login page
+				WebElement uname = d.findElement(By.name("username"));
+				//clearing textfield
+				uname.clear(); 
+				Thread.sleep(2000);
+				//giving username manually
+				uname.sendKeys("admin");
+				Thread.sleep(2000);
+				//finding password to login page
+				WebElement pw = d.findElement(By.name("password"));
+				//clearing textfield
+				pw.clear();
+				Thread.sleep(2000);
+				//giving password manually
+				pw.sendKeys("admin1");
+				Thread.sleep(2000);
+				//click on sign in button
+				d.findElement(By.xpath("//button[text()='Sign in']")).click();
+				Thread.sleep(2000);
+				Reporter.log("Signing in to vtiger",true);	
+	}
+	*/
+	    
+	
+		//@Test(groups = "SmokeSuite")  // group execution
 		@Test 
 		
 		public void login() throws IOException, InterruptedException {
@@ -35,8 +63,7 @@ public class CreateContactsTestNG extends BaseClassCont {
 		// read data from excel
 		String First = eutils.getDataFromExcelSheet("Sheet1",2,1); //row & col
 		String Last = eutils.getDataFromExcelSheet("Sheet1",3,1);
-		  
-		
+
 		
 		 //click on menu option
 		d.findElement(By.xpath("(//span[@class='app-icon fa fa-bars'])[1]")).click();
@@ -49,6 +76,17 @@ public class CreateContactsTestNG extends BaseClassCont {
 		 //click on contacts
 		 d.findElement(By.xpath("(//span[text()=' Contacts'])[1]")).click();
 		Thread.sleep(2000);
+		
+		/* it will give ss of Add Contact + button
+		//To fetch the title of current page
+				String actualtitle = d.getTitle();
+				System.out.println(actualtitle);
+				
+				String Expectedtitle = "Contacts1" ;
+				
+				// testscript pass generally use hardassert
+				Assert.assertEquals(actualtitle, Expectedtitle);
+		*/	
 		Reporter.log("Click on add contacts +");
 		//click on add contacts button
 		d.findElement(By.id("Contacts_listView_basicAction_LBL_ADD_RECORD")).click();
@@ -70,10 +108,26 @@ public class CreateContactsTestNG extends BaseClassCont {
 		d.findElement(By.name("lastname")).sendKeys(Last);
 		Thread.sleep(2000);
 		Reporter.log("lastname");
+		
+		/*  it will give ss of contact page 
+		 //To fetch the title of current page
+		String actualtitle = d.getTitle();
+		System.out.println(actualtitle);
+		
+		String Expectedtitle = "Contacts1" ;
+		
+		// testscript pass generally use hardassert
+		Assert.assertEquals(actualtitle, Expectedtitle);
+		*/
+		
+		// to take screenshot
+//	wutils.screenshot(d,Screenshotname);
+		
 		//scrolling opeartion
 		JavascriptExecutor jse = (JavascriptExecutor) d ;
 		jse.executeScript("window.scrollBy(0,200)");  
 		Thread.sleep(4000);
+		
 		
 		//click on assign to dropdown
 		d.findElement(By.xpath("(//span[@class='select2-arrow'])[3]")).click();
@@ -93,8 +147,18 @@ public class CreateContactsTestNG extends BaseClassCont {
 		Thread.sleep(2000);	
 		Reporter.log("clicking on save button");
 		
-		
 		//d.quit();
 		 
 	}
+		@Test   // to pass the method & getting diag into extent report
+		public void actitime()
+		{
+			System.out.println("Hello");
+		}
+		
+		@Test(dependsOnMethods = "login")   // to skip the method & getting diag into extent report
+		public void facebook() 
+		{
+			System.out.println("HI!!!!!!");
+		}
 }
